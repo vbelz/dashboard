@@ -4,9 +4,17 @@
 >
 ## Introduction
 
-This project aims at creating a Postgres database, host it in AWS RDS (Amazon Relational Database Service), deploy it in a Metabase interface
-accessible from a web browser through AWS EC2 (Amazon Elastic Compute Cloud ). The dataset I will be using is the baby names dataset available
-at [https://www.ssa.gov/oact/babynames/limits.html](https://www.ssa.gov/oact/babynames/limits.html).  It contains the baby names of U.S. births between 1910 and 2018, per states, for a total of more than 6 millions rows. The process can easily be adapted for any structured dataset.
+This project aims at creating a Postgres database, host it in AWS RDS (Amazon Relational Database Service), deploy it in a Metabase
+
+interface accessible from a web browser through AWS EC2 (Amazon Elastic Compute Cloud ). The dataset I will be using is the
+
+baby names dataset available at
+
+[https://www.ssa.gov/oact/babynames/limits.html](https://www.ssa.gov/oact/babynames/limits.html).  
+
+It contains the baby names of U.S. births between 1910 and 2018, per states, for a total of more than 6 millions rows. The process can easily be adapted
+
+for any structured dataset.
 
 ## Create a Postgres database
 
@@ -65,7 +73,7 @@ It will be useful to send it on AWS RDS.
 
 ## Your database in AWS RDS
 
-This section requires to have a AWS account.
+This section requires to have an AWS account.
 
 In AWS you can create a new database, following step by step instructions: [AWS RDS instructions](https://aws.amazon.com/fr/getting-started/tutorials/create-connect-postgresql-db/).
 
@@ -90,7 +98,7 @@ Then you are connected to your AWS RDS server, you can create your database with
 
 You can now exit.
 
-Then, from your local computer, you can transfer the data from your local computer to AWS RDS database.
+Then, from your local computer, you can transfer the data  to AWS RDS database.
 
 `psql -f usbabies.sql -h youramazonhost -p 5432 -U postgres -d usbabynames`
 
@@ -99,7 +107,7 @@ Now, you should have your postgres database hosted on AWS RDS server.
 
 ## Deploy your database in Metabase accessible from web browser
 
-Now, if to access it through a web browser, you would need to create a AWS EC2 (Amazon Elastic Compute Cloud ) instance.
+Now, to access it through a web browser, you would need to create a AWS EC2 (Amazon Elastic Compute Cloud ) instance.
 
 You can follow step by step instructions [AWS EC2 instructions](https://docs.aws.amazon.com/fr_fr/efs/latest/ug/gs-step-one-create-ec2-resources.html)
 
@@ -126,7 +134,13 @@ Then you can connect to your EC2 instance via ssh:
 `ssh -i mykeypair.pem ec2-user@youramazonDNSaddress`
 
 Your are now on your new EC2 instance with nothing installed.
-You would need to download metabase.jar, install the Java Development Kit (JDK), launch the Metabase server, and install nginx (web server that we will use to redirect the default metabase port (:3000) to the public HTTP port (:80).
+You would need to download metabase.jar, install the Java
+
+Development Kit (JDK), launch the Metabase server, and install nginx
+
+(web server that we will use to redirect the default metabase port (:3000)
+
+to the public HTTP port (:80).
 
 To do so:
 
@@ -141,6 +155,7 @@ Follow the installation on the terminal. After some time, a nano editor will be 
 In the nano editor: locate the server section.
 Comment (using the # symbol) the line that starts with root and the line
 that starts with include .
+
 Also, edit the location section as follows:
 
 location / { proxy_pass http://127.0.0.1:3000/; }
@@ -166,15 +181,24 @@ You can now access your database in Metabase:
 
 <img src="metabase_db.png" alt="metabase db" title="Example"  />
 
+&nbsp;&nbsp;&nbsp;
+
 Then on Metabase, you can play with your dataset and makes, SQL queries, ask questions, create display, create dashboard than you can share with your team (give access through the admin option to other people and they can access from their browser).
 
 Here an example of a simple SQL query:
 
 <img src="sql_query_metabase.png" alt="sql query" title="Example"  />
 
+&nbsp;&nbsp;&nbsp;
+
 You can create a dashboard with interactive plots and text. An example below:
 
+&nbsp;&nbsp;&nbsp;
+
+
 <img src="metabase_dashboartd_example.png" alt="metabase dashboard" title="Example"  />
+
+&nbsp;&nbsp;&nbsp;
 
 
 Note:
