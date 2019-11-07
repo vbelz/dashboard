@@ -1,0 +1,66 @@
+Option 1:
+
+Run: python prepare_database_csv.py
+
+#Create a PostGreSQL database:
+createdb usbabynames_db
+#Connect to it:
+psql -d usbabynames_db
+#Create a table name with specifications:
+CREATE TABLE babynames (
+id SERIAL PRIMARY KEY,
+state VARCHAR(20),
+gender VARCHAR(1),
+year INTEGER,
+names VARCHAR(20),
+count_states INTEGER,
+count_country INTEGER
+);
+#Update Table from the csv file:
+COPY babynames FROM '/Users/vincentbelz/Documents/code/spiced/Week6/babynames_db.csv' DELIMITER ',';
+
+Option 2:
+createdb usbabynames_db
+
+(Need to have installed sqlalchemy and psycopg2)
+
+Run: python prepare_database_sqlalchemy.py
+
+
+
+Now, you created a database in PostGreSQL with 6028151 rows and 7 columns
+
+ctrl + d to exit
+
+#Create a backup sql file of your local PostGreSQL database:
+pg_dump usbabynames_db > usbabies.sql
+
+#Connect to your AWS database:
+psql -h database-1.c6jnopvymmr2.eu-central-1.rds.amazonaws.com -p 5432 -U postgres -d postgres
+
+#Create Database:
+CREATE DATABASE usbabynames;
+
+#Transfer the data from your local computer to AWS RDS database:
+psql -f usbabies.sql -h database-1.c6jnopvymmr2.eu-central-1.rds.amazonaws.com -p 5432 -U postgres -d usbabynames
+
+scp -i babynames_key.pem installation.sh ec2-user@ec2-35-156-220-15.eu-central-1.compute.amazonaws.com:.
+
+ssh -i babynames_key.pem ec2-user@ec2-35-156-220-15.eu-central-1.compute.amazonaws.com
+
+chmod u+x installation.sh
+
+./installation.sh
+
+In the nano editor, locate the server section. 
+
+Comment (using the # symbol) the line that starts with root and the line 
+that starts with include . Also, edit the location section as follows:
+
+location / { proxy_pass http://127.0.0.1:3000/; }
+
+Restart nginx: sudo service nginx restart
+
+cd
+
+java -jar metabase.jar
