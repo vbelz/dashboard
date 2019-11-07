@@ -150,7 +150,7 @@ that starts with include .
 
 Also, edit the location section as follows:
 
-`location / { proxy_pass http://127.0.0.1:3000/; }
+`location / { proxy_pass http://127.0.0.1:3000/; }`      
 
 Then save.
 
