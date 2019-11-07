@@ -113,8 +113,7 @@ Keep as well the DNS address (youramazonDNSaddress) you will need to connect fro
 Make sure your AWS instance is configured to accept any inbound traffic on port 80 (HTTP).
 In your AWS dashboard, scroll over to Security Groups > launch wizard > click on the Inbound tab > Edit > Add Rule > add HTTP (default Port 80)
 
-<img src="ec2_instance_ex.png" alt="EC2 instance title"
-"title="Example" />
+<img src="ec2_instance_ex.png" alt="ec2 instance" title="Example"  />
 
 Now you can connect to your EC2 instance from your terminal using ssh.
 
@@ -165,17 +164,17 @@ On your http://youramazonDNSaddress you can connect Metabase to your AWS RDS dat
 
 You can now access your database in Metabase:
 
-<img src="Metabase_db.png" alt="Database in Metabase"="Database"  />
+<img src="metabase_db.png" alt="metabase db" title="Example"  />
 
 Then on Metabase, you can play with your dataset and makes, SQL queries, ask questions, create display, create dashboard than you can share with your team (give access through the admin option to other people and they can access from their browser).
 
 Here an example of a simple SQL query:
 
-<img src="SQL_query_metabase.png" alt="SQL query on metabase"="Example"  />
+<img src="sql_query_metabase.png" alt="sql query" title="Example"  />
 
 You can create a dashboard with interactive plots and text. An example below:
 
-<img src="Metabase_dashboartd_example.png" alt="A dash board example"="Dashboard"  />
+<img src="metabase_dashboartd_example.png" alt="metabase dashboard" title="Example"  />
 
 
 Note:
