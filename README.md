@@ -1,6 +1,3 @@
-# dashboard
-Metabase/AWS RDS/AWS EC2
-
 # Dashboard
 ---
 >
@@ -45,6 +42,7 @@ count_country INTEGER
 ```
 
 You can then fill the table using the csv file previously created:
+
 `COPY babynames FROM 'babynames_db.csv' DELIMITER ',';`
 
 (ctrl + d to exit)
@@ -69,7 +67,7 @@ It will be useful to send it on AWS RDS.
 
 This section requires to have a AWS account.
 
-In AWS you can create a new database, following step by step instructions: [https://aws.amazon.com/fr/getting-started/tutorials/create-connect-postgresql-db/](https://aws.amazon.com/fr/getting-started/tutorials/create-connect-postgresql-db/).
+In AWS you can create a new database, following step by step instructions: [AWS RDS instructions](https://aws.amazon.com/fr/getting-started/tutorials/create-connect-postgresql-db/).
 
 I personally used the free tier version. From the default options, you would need to change to publicly available. Then once created, you
 can go to security group and allows entrance for your IP address.
@@ -103,7 +101,7 @@ Now, you should have your postgres database hosted on AWS RDS server.
 
 Now, if to access it through a web browser, you would need to create a AWS EC2 (Amazon Elastic Compute Cloud ) instance.
 
-You can follow step by step instructions [https://docs.aws.amazon.com/fr_fr/efs/latest/ug/gs-step-one-create-ec2-resources.html] (https://docs.aws.amazon.com/fr_fr/efs/latest/ug/gs-step-one-create-ec2-resources.html)
+You can follow step by step instructions [AWS EC2 instructions](https://docs.aws.amazon.com/fr_fr/efs/latest/ug/gs-step-one-create-ec2-resources.html)
 
 I personally used free tier version with linux operating system.
 
@@ -115,7 +113,8 @@ Keep as well the DNS address (youramazonDNSaddress) you will need to connect fro
 Make sure your AWS instance is configured to accept any inbound traffic on port 80 (HTTP).
 In your AWS dashboard, scroll over to Security Groups > launch wizard > click on the Inbound tab > Edit > Add Rule > add HTTP (default Port 80)
 
-<img src="EC2_instance_ex.png" alt="EC2 instance title"="Example"  />
+<img src="ec2_instance_ex.png" alt="EC2 instance title"
+"title="Example" />
 
 Now you can connect to your EC2 instance from your terminal using ssh.
 
